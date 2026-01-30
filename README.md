@@ -1,8 +1,32 @@
-# 🔊 CATCH-NOISE-AI-PROJECT
+# 🔊 CATCH-NOISE
 
-**Noise classification project for classroom AI system**  
-AI를 활용해 교실 소음을 실시간으로 분석하고, 학습을 방해하는 소리와 방해하지 않는 소리를 구분하여 시각적으로 표시하는 프로젝트입니다.  
-학생 스스로 소음 환경을 인지하고 조절할 수 있도록 돕는 **자율 학습 환경 구축**을 목표로 합니다.
+**실시간 교실 소음 분류 AI 시스템**  
+딥러닝 기반으로 교실 소음을 실시간 분석하여 학습 방해 소음을 감지하고,  
+학생 스스로 소음 환경을 인지하고 조절할 수 있도록 돕는 **자율 학습 환경 구축 프로젝트**
+
+<br>
+
+## 📌 프로젝트 개요
+
+- **기간**: 2025.09 ~ 2026.01 (5개월)
+- **팀 구성**: 6인 팀
+- **목표**: 실시간 오디오 분류로 학습 방해 소음 감지 및 시각적 피드백 제공
+
+### 주요 기능
+- 🎯 실시간 오디오 분류 (Non-Noisy / Noisy)
+- ⚡ 10-15ms 저지연 추론으로 30fps+ 실시간 처리
+- 🖥️ Gradio 기반 직관적 웹 UI
+- 📱 Jetson Nano 엣지 디바이스 배포
+- 🎛️ 3가지 모드 제공 (도서관, 회의, 쉬는 시간)
+
+### 핵심 성과
+| 지표 | 값 |
+|------|-----|
+| Test Accuracy | **92.3%** |
+| 실시간 정확도 | **91.5%** |
+| 추론 속도 | **10-15ms** |
+| F1 Score | **0.916** |
+| 모델 최적화 | **12.5배 향상** |
 
 <br>
 
@@ -19,7 +43,7 @@ AI를 활용해 교실 소음을 실시간으로 분석하고, 학습을 방해�
     <td align="center">
       <img src="https://github.com/HyoChan1117.png" width="100px;" alt="김효찬"/><br />
       <sub><b>김효찬</b></sub><br />
-      팀원<br />
+      팀원 <br />
       <a href="https://github.com/HyoChan1117" target="_blank">@HyoChan1117</a>
     </td>
     <td align="center">
@@ -34,125 +58,129 @@ AI를 활용해 교실 소음을 실시간으로 분석하고, 학습을 방해�
 
 <br>
 
-## 📂 REPOSITORY 구 조 도
+## 🛠️ 기술 스택
 
-<img src="https://github.com/HyoChan1117/HyoChan1117/raw/master/team_project-structure.drawio.png" alt="Project Structure" width="80%">
+### 오디오 처리 라이브러리
+- **librosa** `0.9.2` - 오디오 신호 분석 및 검증
+- **torchaudio** `0.13.1` - MFCC, ZCR 특징 추출 (메인)
+- **soundfile** `0.10.3` - 오디오 파일 I/O
+- **sounddevice** `0.4.6` - 실시간 마이크 입력
 
-<br>
+### 딥러닝 프레임워크
+- **PyTorch** `1.13.1+cu117` - CNN 분류 모델 구현 (최종 선택)
+- **TensorFlow** - CNN-LSTM 하이브리드 비교 실험
+- **torchvision** `0.14.1+cu117`
 
-## 📁 디렉토리 설명
+### 학습 가속 & 실험 관리
+- **CUDA** `11.7.1` / **cuDNN** `8` - GPU 가속 (학습 시간 10배 단축)
+- **MLflow** `1.30.0` - 60+ 실험 체계적 관리
+- **Optuna** `3.0.3` - 자동 하이퍼파라미터 최적화
 
-<table>
-  <tr>
-    <th>디렉토리</th>
-    <th>설명</th>
-  </tr>
-  <tr>
-    <td><code>src/</code></td>
-    <td>학습, 예측, 모델 정의 등 공통 코드</td>
-  </tr>
-  <tr>
-    <td><code>dev/</code></td>
-    <td>팀원별 실험 공간 (브랜치 기반)</td>
-  </tr>
-  <tr>
-    <td><code>models/</code></td>
-    <td>학습된 모델 저장 (.pth 등)</td>
-  </tr>
-  <tr>
-    <td><code>outputs/</code></td>
-    <td>시각화, 로그, 평가 결과 저장</td>
-  </tr>
-  <tr>
-    <td><code>data/</code></td>
-    <td>공통 오디오 데이터셋</td>
-  </tr>
-  <tr>
-    <td><code>docker/</code></td>
-    <td>Docker 실행 환경 파일</td>
-  </tr>
-  <tr>
-    <td><code>scripts/</code></td>
-    <td>유틸 스크립트, 정리 도구</td>
-  </tr>
-  <tr>
-    <td><code>test/</code></td>
-    <td>샘플 테스트 오디오</td>
-  </tr>
-  <tr>
-    <td><code>.gitignore</code></td>
-    <td>Git 추적 제외 항목 설정</td>
-  </tr>
-</table>
+### 추론 최적화
+- **ONNX** - 플랫폼 독립적 모델 변환
+- **TensorRT** - FP16 최적화 (50ms → 4ms, **12.5배 향상**)
+
+### 배포 & UI
+- **Jetson Nano** - 엣지 디바이스 실시간 추론
+- **Docker** - 개발 환경 통합 관리
+  - Base: `pytorch/pytorch:1.9.0-cuda10.2-cudnn7-devel`
+  - Alt: `nvidia/cuda:11.7.1-cudnn8-runtime-ubuntu22.04`
+- **Gradio** - 웹 기반 실시간 UI
+
+### 데이터 분석 & 시각화
+- **NumPy** `1.22.4`
+- **Pandas** `1.3.5`
+- **scikit-learn** `1.0.2`
+- **Matplotlib** `3.5.2`
+- **Seaborn** `0.11.2`
 
 <br>
 
-## ⚙️ 사용 기술 스택
+## 📂 프로젝트 구조
 
-| 분류 | 기술 |
+```
+catch-noise-dev/
+├── data/
+│   ├── 2class_noisy_vs_nonnoisy/  #  최종 데이터셋
+│   │   ├── noisy/
+│   │   └── non_noisy/
+│   ├── 3_class/                    # 초기 시도
+│   └── 3_class_modify/             # 개선 시도
+├── src/
+│   ├── models/
+│   │   ├── cnn_model.py           # CNN 모델 정의
+│   │   ├── train.py               # 학습 스크립트
+│   │   └── optuna_optimize.py     # 자동 HPO
+│   ├── preprocessing/
+│   │   ├── feature_extraction.py  # MFCC, ZCR 추출
+│   │   └── data_augmentation.py   # Time Shift 증강
+│   └── inference/
+│       ├── realtime_inference.py  # 실시간 추론
+│       └── tensorrt_engine.py     # TensorRT 엔진
+├── dev/
+│   └── [팀원별 실험 공간]          # 브랜치 기반 개발
+├── ui/
+│   ├── record_ui_gradio.py        # Gradio UI
+│   └── record_ui_gradio_jp.py     # Jetson용 UI
+├── models/                         # 학습된 모델 저장
+├── outputs/                        # 시각화, 로그, 평가 결과
+├── test/                           # 샘플 테스트 오디오
+├── docker/
+│   └── Dockerfile
+├── scripts/                        # 유틸 스크립트
+├── docker-compose.yml
+├── requirements.txt
+└── README.md
+```
+
+<br>
+
+## 프로젝트 목표 & 특징
+
+| 목표 | 설명 |
 |------|------|
-| 언어 | Python |
-| 프레임워크 | PyTorch |
-| 도구 | Docker, GitHub Actions, Shell Script |
-| 라이브러리 | Librosa, OpenCV, Matplotlib |
-| 특징 추출 | MFCC, ZCR |
-| 모델 구조 | CNN2D + LSTM (Sequential Classification) |
+| **소음 분류** | 교실 내 소리를 `Non-Noisy` / `Noisy`로 실시간 분류 |
+|  **모드 전환** | `도서관`, `회의`, `쉬는 시간` 3가지 모드별 허용 기준 다름 |
+|  **웹 시각화** | Gradio 기반 실시간 UI (색상, dB 값, 분류 결과) |
+|  **피드백 학습** | 사용자 피드백 수집으로 모델 지속 개선 |
+|  **자동 제어** | 시간표 기반 수업 시간 자동 측정 중단 |
+
+### 주요 특징
+-  **원거리 수음**: 무지향성 마이크 사용
+-  **엣지 컴퓨팅**: Jetson Nano 기반 온디바이스 추론
+- **주관적 라벨링**: 수집자 주관 + 사용자 피드백 반영
+- **체계적 평가**: 혼동 행렬, F1 Score 기반 성능 측정
+-  **환경 일관성**: Docker로 개발/배포 환경 통일
 
 <br>
 
-## 🧩 팀 공통 개발 환경 & 라이브러리 버전 / Team-wide Dev Environment & Library Versions
+## 🔬 모델 아키텍처
 
-| 항목 | 내용 |
-|------|------|
-| **기반 이미지** | `pytorch/pytorch:1.9.0-cuda10.2-cudnn7-devel`<br>`nvidia/cuda:11.7.1-cudnn8-runtime-ubuntu22.04` |
-| **CUDA 버전** | `10.2`, `11.7.1` (사용 환경에 따라 선택) |
-| **Python 버전** | `Python 3.6` (기본 설치 후 `/usr/bin/python` 링크 연결) |
-| **주요 시스템 패키지** | `ffmpeg`, `libsndfile1`, `portaudio19-dev`, `libsm6`, `libxrender-dev`, `cmake`, `git` 등 |
-| **추가 키 설정** | NVIDIA CUDA GPG 키 수동 등록 |
-| **기본 실행 명령어** | `CMD ["bash"]` |
+### CNN 구조
+```
+Input (14 features: MFCC 13 + ZCR 1)
+  ↓
+Conv1D(32, kernel=3) → ReLU → MaxPool(2)
+  ↓
+Conv1D(64, kernel=3) → ReLU → MaxPool(2)
+  ↓
+Flatten
+  ↓
+Dense(128) → Dropout(0.3) → ReLU
+  ↓
+Dense(2) → Softmax
+  ↓
+Output (Non-Noisy / Noisy)
+```
 
-### 🔧 PyTorch 생태계 라이브러리
-
-| 패키지 | 버전 | 주석 |
-|--------|-------|------|
-| `torch` | `1.13.1+cu117` | CUDA 11.7 대응 버전 |
-| `torchvision` | `0.14.1+cu117` | |
-| `torchaudio` | `0.13.1` | |
-| `torch` | `1.9.0` | (추가로 명시됨) |
-| `torchvision` | `0.10.0` | (추가로 명시됨) |
-
-### 📦 주요 requirements.txt 패키지 요약
-
-| 범주 | 패키지 | 버전 |
-|------|--------|------|
-| **기초 라이브러리** | `numpy`, `pandas`, `scikit-learn` | `1.22.4`, `1.3.5`, `1.0.2` |
-| **시각화** | `matplotlib`, `seaborn`, `pyqt5`, `pyqtgraph` | `3.5.2`, `0.11.2`, 기타 |
-| **오디오 처리** | `librosa`, `soundfile`, `pyaudio`, `scipy`, `sounddevice` | `0.9.2`, `0.10.3.post1`, `0.4.6`, 기타 |
-| **실험 관리/최적화** | `mlflow`, `optuna`, `tqdm` | `1.30.0`, `3.0.3`, `4.64.1` |
-| **기타 유틸** | `imageio`, `opencv-python`, `Cython<3` | `2.19.3`, 등 |
-
-<br>
-
-## 🎯 프로젝트 목표
-
-| 목적 | 설명 |
-|------|------|
-| 🔉 소음 분류 | 교실 내 소리를 분석해 `조용한 소리` / `시끄러운 소리`로 실시간 분류 |
-| 🎛️ 모드 전환 | 3가지 모드 제공: `도서관`, `회의`, `쉬는 시간`에 따라 허용 기준 다름 |
-| 🌐 웹 시각화 | 분석 결과를 웹 UI에 실시간 표시 (색상 + dB 값 등 시각 요소) |
-| 🧠 사용자 피드백 기반 개선 | 사용자 피드백을 수집하여 AI 모델을 지속적으로 개선 |
-| 🔁 자동 비측정 기능 | 수업 시간에는 자동으로 측정을 중단 (시간표 기반) |
-
-<br>
-
-## 🧪 프로젝트 주요 특징
-
-| 항목 | 내용 |
-|------|------|
-| 🎤 마이크 | 원거리 수음 가능한 무지향성 마이크 사용 |
-| 🧱 하드웨어 | Jetson Nano 기반 실시간 오디오 처리 |
-| 🔀 데이터 | 라벨링 기준은 수집자 주관 + 피드백 반영 |
-| 📊 평가 방식 | 실험용 오디오를 활용한 정확도/혼동 행렬 기반 평가 |
-| 🐳 실행 환경 | Docker로 모든 실행 환경 일관성 확보 |
+### 최적 하이퍼파라미터 (Optuna 결과)
+| 파라미터 | 값 |
+|---------|-----|
+| conv1_filters | 32 |
+| conv2_filters | 64 |
+| dense_units | 128 |
+| dropout | 0.3 |
+| learning_rate | 0.003 |
+| batch_size | 32 |
 
 <br>
