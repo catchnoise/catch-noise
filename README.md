@@ -1,93 +1,92 @@
 # 🔊 CATCH-NOISE
 
-**실시간 교실 소음 분류 AI 시스템**  
-딥러닝 기반으로 교실 소음을 실시간 분석하여 학습 방해 소음을 감지하고,  
-학생 스스로 소음 환경을 인지하고 조절할 수 있도록 돕는 **자율 학습 환경 구축 프로젝트**
+**リアルタイム教室騒音分類AIシステム**  
+ディープラーニングベースで教室の騒音をリアルタイム分析し、学習妨害騒音を検知することで、  
+学生自ら騒音環境を認知・調整できるようサポートする**自律学習環境構築プロジェクト**
 
 <br>
 
-## 📌 프로젝트 개요
+## プロジェクト概要
 
-- **기간**: 2025.09 ~ 2026.01 (5개월)
-- **팀 구성**: 6인 팀
-- **목표**: 실시간 오디오 분류로 학습 방해 소음 감지 및 시각적 피드백 제공
+- **期間**: 2025.06 ~
+- **チーム構成**: 3名チーム
+- **目標**: リアルタイムオーディオ分類による学習妨害騒音検知およびビジュアルフィードバック提供
 
-### 주요 기능
-- 🎯 실시간 오디오 분류 (Non-Noisy / Noisy)
-- ⚡ 10-15ms 저지연 추론으로 30fps+ 실시간 처리
-- 🖥️ Gradio 기반 직관적 웹 UI
-- 📱 Jetson Nano 엣지 디바이스 배포
-- 🎛️ 3가지 모드 제공 (도서관, 회의, 쉬는 시간)
+### 主要機能
+- リアルタイムオーディオ分類 (Non-Noisy / Noisy)
+- 10-15ms低遅延推論で30fps+リアルタイム処理
+- Gradioベースの直感的Web UI
+- Jetson Nanoエッジデバイスデプロイ
+- 3つのモード提供 (図書館、会議、休憩時間)
 
-### 핵심 성과
-| 지표 | 값 |
+### 主要成果
+| 指標 | 値 |
 |------|-----|
 | Test Accuracy | **92.3%** |
-| 실시간 정확도 | **91.5%** |
-| 추론 속도 | **10-15ms** |
+| リアルタイム精度 | **91.5%** |
+| 推論速度 | **10-15ms** |
 | F1 Score | **0.916** |
-| 모델 최적화 | **12.5배 향상** |
+| モデル最適化 | **12.5倍向上** |
 
 <br>
 
-## 👥 팀원 소개
+## チームメンバー紹介
 
 <table>
   <tr>
     <td align="center">
-      <img src="https://github.com/jammmin02.png" width="100px;" alt="박정민"/><br />
-      <sub><b>박정민</b></sub><br />
-      팀장<br />
+      <img src="https://github.com/jammmin02.png" width="100px;" alt="パク・ジョンミン"/><br />
+      <sub><b>パク・ジョンミン</b></sub><br />
+      チームリーダー<br />
       <a href="https://github.com/jammmin02" target="_blank">@jammmin02</a>
     </td>
     <td align="center">
-      <img src="https://github.com/HyoChan1117.png" width="100px;" alt="김효찬"/><br />
-      <sub><b>김효찬</b></sub><br />
-      팀원 <br />
+      <img src="https://github.com/HyoChan1117.png" width="100px;" alt="キム・ヒョチャン"/><br />
+      <sub><b>キム・ヒョチャン</b></sub><br />
+      チームメンバー<br />
       <a href="https://github.com/HyoChan1117" target="_blank">@HyoChan1117</a>
     </td>
     <td align="center">
-      <img src="https://github.com/youngmin109.png" width="100px;" alt="배영민"/><br />
-      <sub><b>배영민</b></sub><br />
-      팀원<br />
+      <img src="https://github.com/youngmin109.png" width="100px;" alt="ペ・ヨンミン"/><br />
+      <sub><b>ペ・ヨンミン</b></sub><br />
+      チームメンバー<br />
       <a href="https://github.com/youngmin109" target="_blank">@youngmin109</a>
     </td>
   </tr>
 </table>
 
-
 <br>
 
-## 🛠️ 기술 스택
+## 技術スタック
 
-### 오디오 처리 라이브러리
-- **librosa** `0.9.2` - 오디오 신호 분석 및 검증
-- **torchaudio** `0.13.1` - MFCC, ZCR 특징 추출 (메인)
-- **soundfile** `0.10.3` - 오디오 파일 I/O
-- **sounddevice** `0.4.6` - 실시간 마이크 입력
+### オーディオ処理ライブラリ
+- **librosa** `0.9.2` - オーディオ信号分析および検証
+- **torchaudio** `0.13.1` - MFCC、ZCR特徴抽出（メイン）
+- **soundfile** `0.10.3` - オーディオファイルI/O
+- **sounddevice** `0.4.6` - リアルタイムマイク入力
 
-### 딥러닝 프레임워크
-- **PyTorch** `1.13.1+cu117` - CNN 분류 모델 구현 (최종 선택)
-- **TensorFlow** - CNN-LSTM 하이브리드 비교 실험
+### ディープラーニングフレームワーク
+- **PyTorch** `1.13.1+cu117` - CNN分類モデル実装（最終選択）
+- **TensorFlow** - CNN-LSTMハイブリッド比較実験
 - **torchvision** `0.14.1+cu117`
 
-### 학습 가속 & 실험 관리
-- **CUDA** `11.7.1` / **cuDNN** `8` - GPU 가속 (학습 시간 10배 단축)
-- **MLflow** `1.30.0` - 60+ 실험 체계적 관리
-- **Optuna** `3.0.3` - 자동 하이퍼파라미터 최적화
+### 学習高速化 & 実験管理
+- **CUDA** `11.7.1` / **cuDNN** `8` - GPU高速化（学習時間10倍短縮）
+- **MLflow** `1.30.0` - 60+実験の体系的管理
+- **Optuna** `3.0.3` - 自動ハイパーパラメータ最適化
 
-### 추론 최적화
-- **ONNX** - 플랫폼 독립적 모델 변환
-- **TensorRT** - FP16 최적화 (50ms → 4ms, **12.5배 향상**)
+### 推論最適化
+- **ONNX** - プラットフォーム非依存モデル変換
+- **TensorRT** - FP16最適化（50ms → 4ms、**12.5倍向上**）
 
-### 배포 & UI
-- **Jetson Nano** - 엣지 디바이스 실시간 추론
-- **Docker** - 개발 환경 통합 관리
+### デプロイ & UI
+- **Jetson Nano** - エッジデバイスリアルタイム推論
+- **Docker** - 開発環境統合管理
   - Base: `pytorch/pytorch:1.9.0-cuda10.2-cudnn7-devel`
   - Alt: `nvidia/cuda:11.7.1-cudnn8-runtime-ubuntu22.04`
-- **Gradio** - 웹 기반 실시간 UI
+- **Gradio** - Webベースリアルタイム UI
 
-### 데이터 분석 & 시각화
+### データ分析 & ビジュアライゼーション
 - **NumPy** `1.22.4`
 - **Pandas** `1.3.5`
 - **scikit-learn** `1.0.2`
@@ -96,38 +95,38 @@
 
 <br>
 
-## 📂 프로젝트 구조
+##  プロジェクト構造
 
 ```
 catch-noise-dev/
 ├── data/
-│   ├── 2class_noisy_vs_nonnoisy/  #  최종 데이터셋
+│   ├── 2class_noisy_vs_nonnoisy/  # 最終データセット
 │   │   ├── noisy/
 │   │   └── non_noisy/
-│   ├── 3_class/                    # 초기 시도
-│   └── 3_class_modify/             # 개선 시도
+│   ├── 3_class/                    # 初期試行
+│   └── 3_class_modify/             # 改善試行
 ├── src/
 │   ├── models/
-│   │   ├── cnn_model.py           # CNN 모델 정의
-│   │   ├── train.py               # 학습 스크립트
-│   │   └── optuna_optimize.py     # 자동 HPO
+│   │   ├── cnn_model.py           # CNNモデル定義
+│   │   ├── train.py               # 学習スクリプト
+│   │   └── optuna_optimize.py     # 自動HPO
 │   ├── preprocessing/
-│   │   ├── feature_extraction.py  # MFCC, ZCR 추출
-│   │   └── data_augmentation.py   # Time Shift 증강
+│   │   ├── feature_extraction.py  # MFCC、ZCR抽出
+│   │   └── data_augmentation.py   # Time Shift拡張
 │   └── inference/
-│       ├── realtime_inference.py  # 실시간 추론
-│       └── tensorrt_engine.py     # TensorRT 엔진
+│       ├── realtime_inference.py  # リアルタイム推論
+│       └── tensorrt_engine.py     # TensorRTエンジン
 ├── dev/
-│   └── [팀원별 실험 공간]          # 브랜치 기반 개발
+│   └── [メンバー別実験スペース]    # ブランチベース開発
 ├── ui/
 │   ├── record_ui_gradio.py        # Gradio UI
-│   └── record_ui_gradio_jp.py     # Jetson용 UI
-├── models/                         # 학습된 모델 저장
-├── outputs/                        # 시각화, 로그, 평가 결과
-├── test/                           # 샘플 테스트 오디오
+│   └── record_ui_gradio_jp.py     # Jetson用UI
+├── models/                         # 学習済みモデル保存
+├── outputs/                        # ビジュアライゼーション、ログ、評価結果
+├── test/                           # サンプルテストオーディオ
 ├── docker/
 │   └── Dockerfile
-├── scripts/                        # 유틸 스크립트
+├── scripts/                        # ユーティリティスクリプト
 ├── docker-compose.yml
 ├── requirements.txt
 └── README.md
@@ -135,28 +134,28 @@ catch-noise-dev/
 
 <br>
 
-## 프로젝트 목표 & 특징
+## プロジェクト目標 & 特徴
 
-| 목표 | 설명 |
+| 目標 | 説明 |
 |------|------|
-| **소음 분류** | 교실 내 소리를 `Non-Noisy` / `Noisy`로 실시간 분류 |
-|  **모드 전환** | `도서관`, `회의`, `쉬는 시간` 3가지 모드별 허용 기준 다름 |
-|  **웹 시각화** | Gradio 기반 실시간 UI (색상, dB 값, 분류 결과) |
-|  **피드백 학습** | 사용자 피드백 수집으로 모델 지속 개선 |
-|  **자동 제어** | 시간표 기반 수업 시간 자동 측정 중단 |
+| **騒音分類** | 教室内の音を`Non-Noisy` / `Noisy`にリアルタイム分類 |
+| **モード切替** | `図書館`、`会議`、`休憩時間` 3つのモード別許容基準異なる |
+| **Web可視化** | Gradioベースリアルタイム UI（色、dB値、分類結果） |
+| **フィードバック学習** | ユーザーフィードバック収集によるモデル継続改善 |
+| **自動制御** | 時間割ベース授業時間自動測定中断 |
 
-### 주요 특징
--  **원거리 수음**: 무지향성 마이크 사용
--  **엣지 컴퓨팅**: Jetson Nano 기반 온디바이스 추론
-- **주관적 라벨링**: 수집자 주관 + 사용자 피드백 반영
-- **체계적 평가**: 혼동 행렬, F1 Score 기반 성능 측정
--  **환경 일관성**: Docker로 개발/배포 환경 통일
+### 主要特徴
+- **遠距離集音**: 無指向性マイク使用
+- **エッジコンピューティング**: Jetson Nanoベースオンデバイス推論
+- **主観的ラベリング**: 収集者主観 + ユーザーフィードバック反映
+- **体系的評価**: 混同行列、F1 Scoreベース性能測定
+- **環境一貫性**: Dockerで開発/デプロイ環境統一
 
 <br>
 
-## 🔬 모델 아키텍처
+## モデルアーキテクチャ
 
-### CNN 구조
+### CNN構造
 ```
 Input (14 features: MFCC 13 + ZCR 1)
   ↓
@@ -173,8 +172,8 @@ Dense(2) → Softmax
 Output (Non-Noisy / Noisy)
 ```
 
-### 최적 하이퍼파라미터 (Optuna 결과)
-| 파라미터 | 값 |
+### 最適ハイパーパラメータ (Optuna結果)
+| パラメータ | 値 |
 |---------|-----|
 | conv1_filters | 32 |
 | conv2_filters | 64 |
