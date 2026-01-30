@@ -28,18 +28,6 @@ AI를 활용해 교실 소음을 실시간으로 분석하고, 학습을 방해�
       팀원<br />
       <a href="https://github.com/youngmin109" target="_blank">@youngmin109</a>
     </td>
-    <td align="center">
-      <img src="https://github.com/gould7789.png" width="100px;" alt="이현우"/><br />
-      <sub><b>이현우</b></sub><br />
-      팀원<br />
-      <a href="https://github.com/gould7789" target="_blank">@gould7789</a>
-    </td>
-    <td align="center">
-      <img src="https://github.com/Azuking69.png" width="100px;" alt="아즈키"/><br />
-      <sub><b>아즈키</b></sub><br />
-      팀원<br />
-      <a href="https://github.com/Azuking69" target="_blank">@Azuking69</a>
-    </td>
   </tr>
 </table>
 
